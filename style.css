@@ -27,7 +27,7 @@ h1 {
     display: flex;
     justify-content: space-around;
     background-color: white;
-    height: 15rem;
+    height: 20rem;
     width: 85%;
     border-radius: 14px;
     margin: 2rem auto;
@@ -39,6 +39,12 @@ h1 {
     padding: 1rem;
     align-items: center;
     font-size: 2.5rem;
+}
+.aWord {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .unknownLtrs {
     width: 2rem;
@@ -67,4 +73,8 @@ footer {
     justify-content: space-around;
     font-size: 2rem;
     
+}
+.letter:hover {
+    transform: scale(1.3);
+    cursor: pointer;
 }
