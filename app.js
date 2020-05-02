@@ -14,6 +14,33 @@ $(()=> {
     //     return ((key >= 65 && key <= 90) || key == 8);
     //   };
 
+    //set input value as variable to populate #word-container
+    //also hide $enterWordContianer on click
+    let $inputValue = ''
+
+    $('#enterWord').on('click', ()=> {  
+        $inputValue = $('#theWord').val();
+        for (let i = 0; i < $inputValue.length; i++) {
+            console.log($inputValue[i]);  
+        }
+        $splitWord($inputValue)
+        $enterWordContainer.css('display', 'none')
+    })
+
+    //function to split $inputValue and appendTo #wordInPlay
+    const $splitWord = (input) => {
+        let $wordArray = input.split("")
+        for (let i = 0; i < $wordArray.length; i++) {
+            if ($wordArray[i] === " ") {
+                const $eachLtr = $(`<div class="space unknownLtrs">${$wordArray[i]}</div>`)
+                $eachLtr.appendTo($('#wordInPlay'))
+            } else {
+            const $eachLtr = $(`<div class="${$wordArray[i]} unknownLtrs">${$wordArray[i]}</div>`); 
+            $eachLtr.appendTo($('#wordInPlay'))  
+            }
+        }
+    }
+    
 
 
 
