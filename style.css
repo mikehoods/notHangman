@@ -2,7 +2,7 @@
 body {
     background-color: cyan;
     background: linear-gradient(to top left, cyan, rgb(9, 131, 187));
-    height: 95vh;
+    height: 100vh;
 }
 h1 {
     text-align: center;
@@ -85,6 +85,7 @@ h1 {
     font-size: 2rem;
     background-color: green;
     padding: 1rem;
+    border: 1px solid black;
     border-radius: 12px;
     
 }
