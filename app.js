@@ -1,4 +1,5 @@
 
+
 $(()=> {
     // Establish jQuery variables for #playNow button and #enterWord-container
     const $playNow = $('#playNow')
@@ -8,44 +9,45 @@ $(()=> {
         $enterWordContainer.css('display', 'block')
         $playNow.css('display', 'none')
     })
-    //set input to only accept letters
-    // function alphaOnly(event) {
-    //     var key = event.keyCode;
-    //     return ((key >= 65 && key <= 90) || key == 8);
-    //   };
 
-    //set input value as variable to populate #word-container
-    //also hide $enterWordContianer on click
+    //on click : create input variable to populate #word-container, hide $enterWordContianer, show #word-container, and test input for letters only
     let $inputValue = ''
-
     $('#enterWord').on('click', ()=> {  
         $inputValue = $('#theWord').val();
-        for (let i = 0; i < $inputValue.length; i++) {
-            // console.log($inputValue[i]);  
-        }
-        $splitWord($inputValue)
+        const onlyLetters = /^[A-Za-z\s]+$/
+        if ($inputValue.valueOf().match(onlyLetters)) {
+        $splitWords($inputValue)
         $enterWordContainer.css('display', 'none')
+        $('#word-container').css('display', 'flex')
+        $('#letters').css('display', 'flex')
+        } else {
+            alert("Letters only please!")
+        }
     })
 
-    //function to split $inputValue and appendTo #wordInPlay
-    const $splitWord = (input) => {
+    //function to split $inputValue from phrase, to words, to letters and appendTo #wordInPlay
+    const $splitWords = (input) => {
+        //break phrase into individual words
         let $phraseArray = input.split(" ")
-        console.log($phraseArray)
         for (let i = 0; i < $phraseArray.length; i++) {
             let $wordArray = $phraseArray[i].split("")
             const $wordContainer = $(`<div id="wordInPhrase${i}" class="aWord">`)
                 $wordContainer.appendTo('#wordInPlay')
+            //break words into letters
             for (let x = 0; x < $wordArray.length; x++) {
                 const $eachLtr = $(`<div class="${$wordArray[x]} unknownLtrs">${$wordArray[x]}</div>`); 
                 $eachLtr.appendTo($(`#wordInPhrase${i}`))  
             }
+            //no space after word if no more words left
             if (i < ($phraseArray.length -1) ) {
-                const $eachLtr = $(`<div class="space unknownLtrs"> </div>`)
+                const $eachLtr = $(`<div class="space"> </div>`)
                 $eachLtr.appendTo($('#wordInPlay'))
             }
 
         }
     }
+    //function to hide letters and show ? instead
+
     
 
 

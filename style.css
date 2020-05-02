@@ -2,6 +2,7 @@
 body {
     background-color: cyan;
     background: linear-gradient(to top left, cyan, rgb(9, 131, 187));
+    height: 95vh;
 }
 h1 {
     text-align: center;
@@ -9,8 +10,15 @@ h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 #enterWord-container {
+    position: absolute;
     padding: 1rem;
     display: none;
+    background-color: rgb(230, 221, 92);
+    border: 4px solid black;
+    border-radius: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #theWord {
     padding: .4rem;
@@ -24,11 +32,12 @@ h1 {
     font-size: 1.2rem;
 }
 #word-container {
-    display: flex;
-    justify-content: space-around;
+    display: none;
+    justify-content: center;
     background-color: white;
-    height: 20rem;
+    /* height: 20rem; */
     width: 85%;
+    border: 1px solid black;
     border-radius: 14px;
     margin: 2rem auto;
 }
@@ -41,10 +50,9 @@ h1 {
     font-size: 2.5rem;
 }
 .aWord {
-    position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 .unknownLtrs {
     width: 2rem;
@@ -52,26 +60,32 @@ h1 {
     border-bottom: 5px solid black;
     line-height: 1.5rem;
     margin: 1rem;
-    padding: 0 0 1rem 0;
+    padding: 1rem;
+    background-color: black;
 }
 .space {
     border: none;
+    width: 3rem;
 }
 #playNow {
+    position: relative;
     padding: 1rem;
     border-radius: 50%;
     font-size: 1.5rem;
-    margin: 1.5rem;
 }
-footer {
+    #playBtn-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#letters {
+    display: none;
+    justify-content: space-around;
+    font-size: 2rem;
     background-color: green;
     padding: 1rem;
     border-radius: 12px;
-}
-#letters {
-    display: flex;
-    justify-content: space-around;
-    font-size: 2rem;
     
 }
 .letter:hover {
