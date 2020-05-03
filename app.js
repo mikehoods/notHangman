@@ -1,3 +1,13 @@
+class Player {
+    constructor (name, health, score) {
+        this.name = name;
+        this.health = 5;
+        this.score = 0;
+    }
+}
+p1 = new Player ("Player 1")
+p2 = new Player ("Player 2")
+
 $(()=> {
     // Establish jQuery variables for #playNow button and #enterWord-container
     const $playNow = $('#playNow-button')
@@ -128,16 +138,46 @@ $(()=> {
     $('#letters .Z').on('click', ()=> {   
         $chosenOnes('Z', 'z')
     })
-    //function to fade chosen ltrs
+    //function to fade chosen ltr
+    const $fadeLtr = (upperLtr) => {
+        $(`#letters .${upperLtr}`).css('color', 'gray');
+        $(`#letters .${upperLtr}`).css('opacity', '.5');
+        $(`#letters .${upperLtr}`).css('transform', 'scale(.8)');
+    }
+    //function to reset #letters after round
+    const $resetLtrBar = () => {
+        $(`.letter`).css('color', 'black');
+        $(`.letter`).css('opacity', '1');
+        $(`.letter`).css('transform', 'scale(1)');
+    }
+    //function to reset for next round
+    const $resetRound = () => {
+        $resetLtrBar()
+        $lettersArray = [];
+        $('.aWord').remove();
+        $('#letters').css('display', 'none');
+        $('#word-container').css('display', 'none');
+        $('#theWord-input').val('');
+        $('#enterWord-container').css('display', 'block')
+        p1.health = 5;
+        p2.health = 5;
+    }
+    //function to reveal letters in phrase, accumulate score, and check for loss
     const $chosenOnes = (upperLtr, lowerLtr) => {
+        $fadeLtr(upperLtr)
         if ($lettersArray.indexOf(upperLtr) !== -1) {
-            $(`.aWord .${lowerLtr}`).css('background-color', 'white')
-            $(`.aWord .${upperLtr}`).css('background-color', 'white')
+            $(`.aWord .${lowerLtr}`).css('background-color', 'white');
+            $(`.aWord .${upperLtr}`).css('background-color', 'white');
+            p1.score += 30; 
         } else {
-            alert("Letter not found!")
+            alert("Letter not found!");
+            p2.score += 50;
+            p1.health--;
+            if (p1.health <=0) {
+                p2.score += 200;
+                alert("Don't be a sore loser!");
+                $resetRound()
+            }
         }
-    $(`#letters .${upperLtr}`).css('color', 'gray');
-    $(`#letters .${upperLtr}`).css('opacity', '.5')
-    $(`#letters .${upperLtr}`).css('transform', 'scale(.8)')
     }   
 })
