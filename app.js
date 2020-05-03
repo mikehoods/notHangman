@@ -150,7 +150,7 @@ $(()=> {
         $(`.letter`).css('opacity', '1');
         $(`.letter`).css('transform', 'scale(1)');
     }
-    //function to reset for next round
+    //function to reset screen and player health for next round
     const $resetRound = () => {
         $resetLtrBar()
         $lettersArray = [];
