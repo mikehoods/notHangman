@@ -1,30 +1,28 @@
-
-
 $(()=> {
     // Establish jQuery variables for #playNow button and #enterWord-container
-    const $playNow = $('#playNow')
+    const $playNow = $('#playNow-button')
     const $enterWordContainer = $('#enterWord-container')
     // Click event to display #enterWord-container and hide playNow button
     $playNow.on('click', ()=> {
         $enterWordContainer.css('display', 'block')
         $playNow.css('display', 'none')
     })
-
+    //create $lettersArray
+    let $lettersArray = [];
     //on click : create input variable to populate #word-container, hide $enterWordContianer, show #word-container, and test input for letters only
     let $inputValue = ''
-    $('#enterWord').on('click', ()=> {  
-        $inputValue = $('#theWord').val();
+    $('#enterWord-button').on('click', ()=> {  
+        $inputValue = $('#theWord-input').val();
         const onlyLetters = /^[A-Za-z\s]+$/
         if ($inputValue.valueOf().match(onlyLetters)) {
-        $splitWords($inputValue)
-        $enterWordContainer.css('display', 'none')
-        $('#word-container').css('display', 'flex')
-        $('#letters').css('display', 'flex')
+        $splitWords($inputValue);
+        $enterWordContainer.css('display', 'none');
+        $('#word-container').css('display', 'flex');
+        $('#letters').css('display', 'flex');
         } else {
             alert("Letters only please!")
         }
     })
-
     //function to split $inputValue from phrase, to words, to letters and appendTo #wordInPlay
     const $splitWords = (input) => {
         //break phrase into individual words
@@ -36,139 +34,110 @@ $(()=> {
             //break words into letters
             for (let x = 0; x < $wordArray.length; x++) {
                 const $eachLtr = $(`<div class="${$wordArray[x]} unknownLtrs">${$wordArray[x]}</div>`); 
-                $eachLtr.appendTo($(`#wordInPhrase${i}`))  
+                //push letter values into array for verifying chosen letter match
+                $lettersArray.push($wordArray[x]);
+                $eachLtr.appendTo($(`#wordInPhrase${i}`));
             }
             //no space after word if no more words left
             if (i < ($phraseArray.length -1) ) {
                 const $eachLtr = $(`<div class="space"> </div>`)
                 $eachLtr.appendTo($('#wordInPlay'))
             }
-
         }
+        console.log($lettersArray);
+        //convert all letters in array to UPPERCASE so they match onclick IDs
+        $lettersArray = $lettersArray.map(function(x){ return x.toUpperCase() });
+        console.log($lettersArray);
     }
     //reveal letters in phrase, and call function to fade chosen letter from #letters
-    
-    
     $('#letters .A').on('click', ()=> {
-        $('.aWord .a, .aWord .A').css('background-color', 'white')
-        $chosenOnes('A')
+        $chosenOnes('A', 'a')
     })
     $('#letters .B').on('click', ()=> {
-        $('.aWord .b, .aWord .B').css('background-color', 'white')
-        $chosenOnes('B')
+        $chosenOnes('B', 'b')
     })
     $('#letters .C').on('click', ()=> {
-        $('.aWord .c, .aWord .C').css('background-color', 'white')
-        $chosenOnes('C')
+        $chosenOnes('C', 'c')
     })
     $('#letters .D').on('click', ()=> {
-        $('.aWord .d, .aWord .D').css('background-color', 'white')
-        $chosenOnes('D')
+        $chosenOnes('D', 'd')
     })
     $('#letters .E').on('click', ()=> {
-        $('.aWord .e, .aWord .E').css('background-color', 'white')
-        $chosenOnes('E')
+        $chosenOnes('E', 'e')
     })
     $('#letters .F').on('click', ()=> {
-        $('.aWord .f, .aWord .F').css('background-color', 'white')
-        $chosenOnes('F')
+        $chosenOnes('F', 'f')
     })
     $('#letters .G').on('click', ()=> {
-        $('.aWord .g, .aWord .G').css('background-color', 'white')
-        $chosenOnes('G')
+        $chosenOnes('G', 'g')
     })
     $('#letters .H').on('click', ()=> {
-        $('.aWord .h, .aWord .H').css('background-color', 'white')
-        $chosenOnes('H')
+        $chosenOnes('H', 'h')
     })
     $('#letters .I').on('click', ()=> {
-        $('.aWord .i, .aWord .I').css('background-color', 'white')
-        $chosenOnes('I')
+        $chosenOnes('I', 'i')
     })
     $('#letters .J').on('click', ()=> {
-        $('.aWord .j, .aWord .J').css('background-color', 'white')
-        $chosenOnes('J')
+        $chosenOnes('J', 'j')
     })
     $('#letters .K').on('click', ()=> {
-        $('.aWord .k, .aWord .K').css('background-color', 'white')
-        $chosenOnes('K')
+        $chosenOnes('K', 'k')
     })
     $('#letters .L').on('click', ()=> {
-        $('.aWord .l, .aWord .L').css('background-color', 'white')
-        $chosenOnes('L')
+        $chosenOnes('L', 'l')
     })
     $('#letters .M').on('click', ()=> {
-        $('.aWord .m, .aWord .M').css('background-color', 'white')
-        $chosenOnes('M')
+        $chosenOnes('M', 'm')
     })
     $('#letters .N').on('click', ()=> {
-        $('.aWord .n, .aWord .N').css('background-color', 'white')
-        $chosenOnes('N')
+        $chosenOnes('N', 'n')
     })
     $('#letters .O').on('click', ()=> {
-        $('.aWord .o, .aWord .O').css('background-color', 'white')
-        $chosenOnes('O')
+        $chosenOnes('O', 'o')
     })
     $('#letters .P').on('click', ()=> {
-        $('.aWord .p, .aWord .P').css('background-color', 'white')
-        $chosenOnes('P')
+        $chosenOnes('P', 'p')
     })
     $('#letters .Q').on('click', ()=> {
-        $('.aWord .q, .aWord .Q').css('background-color', 'white')
-        $chosenOnes('Q')
+        $chosenOnes('Q', 'q')
     })
     $('#letters .R').on('click', ()=> {
-        $('.aWord .r, .aWord .R').css('background-color', 'white')
-        $chosenOnes('R')
+        $chosenOnes('R', 'r')
     })
     $('#letters .S').on('click', ()=> {
-        $('.aWord .s, .aWord .S').css('background-color', 'white')
-        $chosenOnes('S')
+        $chosenOnes('S', 's')
     })
     $('#letters .T').on('click', ()=> {
-        $('.aWord .t, .aWord .T').css('background-color', 'white')
-        $chosenOnes('T')
+        $chosenOnes('T', 't')
     })
     $('#letters .U').on('click', ()=> {
-        $('.aWord .u, .aWord .U').css('background-color', 'white')
-        $chosenOnes('U')
+        $chosenOnes('U', 'u')
     })
     $('#letters .V').on('click', ()=> {
-        $('.aWord .v, .aWord .V').css('background-color', 'white')
-        $chosenOnes('V')
+        $chosenOnes('V', 'v')
     })
     $('#letters .W').on('click', ()=> {
-        $('.aWord .w, .aWord .W').css('background-color', 'white')
-        $chosenOnes('W')
+        $chosenOnes('W', 'w')
     })
     $('#letters .X').on('click', ()=> {
-        $('.aWord .x, .aWord .X').css('background-color', 'white')
-        $chosenOnes('X')
+        $chosenOnes('X', 'x')
     })
     $('#letters .Y').on('click', ()=> {
-        $('.aWord .y, .aWord .Y').css('background-color', 'white')
-        $chosenOnes('Y')
+        $chosenOnes('Y', 'y')
     })
-    $('#letters .Z').on('click', ()=> {
-        $('.aWord .z, .aWord .Z').css('background-color', 'white')
-        $chosenOnes('Z')
+    $('#letters .Z').on('click', ()=> {   
+        $chosenOnes('Z', 'z')
     })
-
-
-
-
-
     //function to fade chosen ltrs
-    const $chosenOnes = (ltr) => {
-        $(`#letters .${ltr}`).css('color', 'gray');
-        $(`#letters .${ltr}`).css('opacity', '.5')
-        $(`#letters .${ltr}`).css('transform', 'scale(.8)')
-
-
-    }
-    
-
-
-
-
+    const $chosenOnes = (upperLtr, lowerLtr) => {
+        if ($lettersArray.indexOf(upperLtr) !== -1) {
+            $(`.aWord .${lowerLtr}`).css('background-color', 'white')
+            $(`.aWord .${upperLtr}`).css('background-color', 'white')
+        } else {
+            alert("Letter not found!")
+        }
+    $(`#letters .${upperLtr}`).css('color', 'gray');
+    $(`#letters .${upperLtr}`).css('opacity', '.5')
+    $(`#letters .${upperLtr}`).css('transform', 'scale(.8)')
+    }   
 })
