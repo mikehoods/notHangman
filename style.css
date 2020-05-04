@@ -10,6 +10,9 @@ h1 {
     font-size: 4rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+h2 {
+    font-size: 1.8rem;
+}
 #enterWord-container {
     position: absolute;
     padding: 1rem;

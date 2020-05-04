@@ -162,13 +162,25 @@ $(()=> {
         p1.health = 5;
         p2.health = 5;
     }
-    //function to reveal letters in phrase, accumulate score, and check for loss
+    //function to reveal letters in phrase, and call $fadeLtr and $keepScore functions
     const $chosenOnes = (upperLtr, lowerLtr) => {
         $fadeLtr(upperLtr)
+        $(`.aWord .${lowerLtr}`).css('background-color', 'white');
+        $(`.aWord .${upperLtr}`).css('background-color', 'white');
+        $keepScore(upperLtr);
+    }
+    //function to keep score and check for win/lose conditions
+    const $keepScore = (upperLtr) => {
         if ($lettersArray.indexOf(upperLtr) !== -1) {
-            $(`.aWord .${lowerLtr}`).css('background-color', 'white');
-            $(`.aWord .${upperLtr}`).css('background-color', 'white');
-            p1.score += 30; 
+            while ($lettersArray.indexOf(upperLtr) !== -1) {
+            $lettersArray.splice($lettersArray.indexOf(upperLtr), 1);
+            }
+            if ($lettersArray.length === 0) {
+                alert("You won dude!");
+                // setTimeout ($resetRound(), 5000);
+            }
+            p1.score += 30;
+            
         } else {
             alert("Letter not found!");
             p2.score += 50;
