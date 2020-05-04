@@ -10,10 +10,14 @@
     p2 = new Player ("Player 2")
 
 $(()=> {
-    //display player health
+    //set up play roles for first round
     let $currentPlayer = p1;
     let $standByPlayer = p2;
-    $('#health-display').text(`${$currentPlayer.name} health: ${$currentPlayer.health}`)
+    //function to display player health
+    const $displayHealth = () => {
+        $('#health-display').text(`${$currentPlayer.name} health: ${$currentPlayer.health}`)
+    }
+    $displayHealth();
     //display player scores
     const $displayScores = () => {
     $('#p1-score').text(`Player 1: ${p1.score}`)
@@ -172,6 +176,7 @@ $(()=> {
         $('#word-container').css('display', 'none');
         $('#theWord-input').val('');
         $('#enterWord-container').css('display', 'block')
+        $('#player-Stats').css('display', 'none')
         p1.health = 5;
         p2.health = 5;
     }
@@ -185,27 +190,43 @@ $(()=> {
     //function to keep score and check for win/lose conditions
     const $keepScore = (upperLtr) => {
         if ($lettersArray.indexOf(upperLtr) !== -1) {
+            $currentPlayer.score += 30;
+            $displayScores()
             while ($lettersArray.indexOf(upperLtr) !== -1) {
             $lettersArray.splice($lettersArray.indexOf(upperLtr), 1);
             }
             if ($lettersArray.length === 0) {
                 $currentPlayer.score += 200;
-                alert("You won dude!"); 
+                $displayScores()
+                alert("You won dude!");
+                $resetRound()
+                $switchRoles()
+                $displayHealth()
             }
-            $currentPlayer.score += 30;
-            $displayScores()
+            
         } else {
             alert("Letter not found!");
             $standByPlayer.score += 50;
             $displayScores()
             $currentPlayer.health--;
-            $('#health-display').text(`${$currentPlayer.health}`)
+            $displayHealth();
             if ($currentPlayer.health <=0) {
                 $standByPlayer.score += 200;
                 $displayScores()
                 alert("Don't be a sore loser!");
                 $resetRound()
+                $switchRoles()
             }
+        }
+    }
+    //function to switch player roles between rounds
+    const $switchRoles = () => {
+        if ($currentPlayer === p1) {
+            $currentPlayer = p2;
+            $standByPlayer = p1;
+        } else if ($currentPlayer === p2) {
+            $currentPlayer = p1;
+            $standByPlayer = p2;
         }
     }
     
