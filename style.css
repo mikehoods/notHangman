@@ -104,3 +104,9 @@ h2 {
     transform: scale(1.3);
     cursor: pointer;
 }
+#player-Stats {
+    display: none;
+    font-size: 2rem;
+    justify-content: space-around;
+    margin: 2rem;
+}

@@ -1,14 +1,25 @@
-class Player {
-    constructor (name, health, score) {
-        this.name = name;
-        this.health = 5;
-        this.score = 0;
+    //establish class for players
+    class Player {
+        constructor (name, health, score) {
+            this.name = name;
+            this.health = 5;
+            this.score = 0;
+        }
     }
-}
-p1 = new Player ("Player 1")
-p2 = new Player ("Player 2")
+    p1 = new Player ("Player 1")
+    p2 = new Player ("Player 2")
 
 $(()=> {
+    //display player health
+    let $currentPlayer = p1;
+    let $standByPlayer = p2;
+    $('#health-display').text(`${$currentPlayer.name} health: ${$currentPlayer.health}`)
+    //display player scores
+    const $displayScores = () => {
+    $('#p1-score').text(`Player 1: ${p1.score}`)
+    $('#p2-score').text(`Player 2: ${p2.score}`)
+    }
+    $displayScores();
     // Establish jQuery variables for #playNow button and #enterWord-container
     const $playNow = $('#playNow-button')
     const $enterWordContainer = $('#enterWord-container')
@@ -19,6 +30,7 @@ $(()=> {
     })
     //create $lettersArray
     let $lettersArray = [];
+    
     //on click : create input variable to populate #word-container, hide $enterWordContianer, show #word-container, and test input for letters only
     let $inputValue = ''
     $('#enterWord-button').on('click', ()=> {  
@@ -29,6 +41,7 @@ $(()=> {
         $enterWordContainer.css('display', 'none');
         $('#word-container').css('display', 'flex');
         $('#letters').css('display', 'flex');
+        $('#player-Stats').css('display', 'flex');
         } else {
             alert("Letters only please!")
         }
@@ -164,9 +177,9 @@ $(()=> {
     }
     //function to reveal letters in phrase, and call $fadeLtr and $keepScore functions
     const $chosenOnes = (upperLtr, lowerLtr) => {
-        $fadeLtr(upperLtr)
         $(`.aWord .${lowerLtr}`).css('background-color', 'white');
         $(`.aWord .${upperLtr}`).css('background-color', 'white');
+        $fadeLtr(upperLtr)
         $keepScore(upperLtr);
     }
     //function to keep score and check for win/lose conditions
@@ -176,20 +189,24 @@ $(()=> {
             $lettersArray.splice($lettersArray.indexOf(upperLtr), 1);
             }
             if ($lettersArray.length === 0) {
-                alert("You won dude!");
-                // setTimeout ($resetRound(), 5000);
+                $currentPlayer.score += 200;
+                alert("You won dude!"); 
             }
-            p1.score += 30;
-            
+            $currentPlayer.score += 30;
+            $displayScores()
         } else {
             alert("Letter not found!");
-            p2.score += 50;
-            p1.health--;
-            if (p1.health <=0) {
-                p2.score += 200;
+            $standByPlayer.score += 50;
+            $displayScores()
+            $currentPlayer.health--;
+            $('#health-display').text(`${$currentPlayer.health}`)
+            if ($currentPlayer.health <=0) {
+                $standByPlayer.score += 200;
+                $displayScores()
                 alert("Don't be a sore loser!");
                 $resetRound()
             }
         }
-    }   
+    }
+    
 })
