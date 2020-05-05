@@ -33,27 +33,30 @@ $(()=> {
             $displayHealth();
         }
     })
-        //function to display player health
-        const $displayHealth = () => {
-            $('#health-display').text(`${$currentPlayer.name}'s health: ${$currentPlayer.health}`)
-        }
-        $displayHealth();
-        //display player scores
-        const $displayScores = () => {
+    //function to display player health
+    const $displayHealth = () => {
+        $('#health-display').text(`${$currentPlayer.name}'s health: ${$currentPlayer.health}`)
+    }
+    $displayHealth();
+    //display player scores
+    const $displayScores = () => {
         $('#p1-score').text(`${p1.name}: ${p1.score}`)
         $('#p2-score').text(`${p2.name}: ${p2.score}`)
-        }
-        
-        // Set jQuery variables for #playNow button and #enterWord-container
-        const $playNow = $('#playNow-button')
-        const $playerNameContainer = $('#playerName-container')
-        const $enterWordContainer = $('#enterWord-container')
-        // Click event to display #enterWord-container and hide playNow button
-        $playNow.on('click', ()=> {
-            $playerNameContainer.css('display', 'block')
-            $('#enterName-h2').text('What is your name, Player 1?');
-            $playNow.css('display', 'none')
-        })
+    }    
+    // Set jQuery variables for #playNow button and #enterWord-container
+    const $playNow = $('#playNow-button')
+    const $playerNameContainer = $('#playerName-container')
+    const $enterWordContainer = $('#enterWord-container')
+    // Click event to display #enterWord-container and hide playNow button
+    $playNow.on('click', ()=> {
+        $playerNameContainer.css('display', 'block')
+        $('#enterName-h2').text('What is your name, Player 1?');
+        $playNow.css('display', 'none')
+    })
+    //click event for alert-button
+    $('#alert-button').on('click', ()=> {
+        $('#alert-window').css('display', 'none')
+    })
     //create $lettersArray
     let $lettersArray = [];
     //on click : create input variable to populate #word-container, hide $enterWordContianer, show #word-container, and test input for letters only
@@ -68,7 +71,8 @@ $(()=> {
         $('#letters').css('display', 'flex');
         $('#player-Stats').css('display', 'flex');
         } else {
-            alert(`Letters only please, ${$currentPlayer.name}!`)
+            $('#alert-h2').text(`Letters only, ${$standByPlayer.name}!`)
+            $('#alert-window').css('display', 'block');
         }
     })
     //function to split $inputValue from phrase, to words, to letters and appendTo #wordInPlay
@@ -226,13 +230,15 @@ $(()=> {
             if ($lettersArray.length === 0) {
                 $currentPlayer.score += 200;
                 $displayScores();
-                alert(`You won, ${$currentPlayer.name}!`);
-                setTimeout($resetRound, 2400);
+                $('#alert-h2').text(`You solved the puzzle, ${$currentPlayer.name}!`);
+                $('#alert-window').css('display', 'block');
+                setTimeout($resetRound, 4000);
                 $switchRoles();
                 $displayHealth();
             }
         } else {
-            alert(`Try again, ${$currentPlayer.name}!`);
+            $('#alert-h2').text(`Try again, ${$currentPlayer.name}!`);
+            $('#alert-window').css('display', 'block');
             $standByPlayer.score += 50;
             $displayScores()
             $currentPlayer.health--;
@@ -240,8 +246,9 @@ $(()=> {
             if ($currentPlayer.health <=0) {
                 $standByPlayer.score += 200;
                 $displayScores()
-                alert(`Don't be a sore loser, ${$currentPlayer.name}!`);
-                setTimeout($resetRound, 2400);
+                $('#alert-h2').text(`Better luck next time, ${$currentPlayer.name}!`);
+                $('#alert-window').css('display', 'block');
+                setTimeout($resetRound, 4000);
                 $switchRoles()
             }
         }
@@ -259,18 +266,21 @@ $(()=> {
             if ($roundCount < 2) {
                 $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
             } else if ($roundCount >= 2) {
-                setTimeout($checkWinner, 2000)
+                setTimeout($checkWinner, 3000)
             }
         }
     }
     //function to confirm and display winner
     const $checkWinner = () => {
         if (p1.score > p2.score){
-            alert(`Game over! ${p1.name} wins with ${p1.score} points!`)
+            $('#alert-h2').text(`Game over! ${p1.name} wins with ${p1.score} points!`);
+            $('#alert-window').css('display', 'block');
         } else if (p1.score < p2.score) {
-            alert(`Game over! ${p2.name} wins with ${p2.score} points!`)
+            $('#alert-h2').text(`Game over! ${p2.name} wins with ${p2.score} points!`);
+            $('#alert-window').css('display', 'block');
         } else if (p1.score === p2.score) {
-            alert(`Game over! ${p1.name} and ${p2.name} have tied with ${p1.score} points!`)
+            $('#alert-h2').text(`Game over! ${p1.name} and ${p2.name} have tied with ${p1.score} points!`);
+            $('#alert-window').css('display', 'block');
         }
     }
     
