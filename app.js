@@ -219,7 +219,7 @@ $(()=> {
                 $currentPlayer.score += 200;
                 $displayScores();
                 alert(`You won, ${$currentPlayer.name}!`);
-                $resetRound();
+                setTimeout($resetRound, 2500);
                 $switchRoles();
                 $displayHealth();
             }
@@ -233,7 +233,7 @@ $(()=> {
                 $standByPlayer.score += 200;
                 $displayScores()
                 alert(`Don't be a sore loser, ${$currentPlayer.name}!`);
-                $resetRound()
+                setTimeout($resetRound, 2500);
                 $switchRoles()
             }
         }
