@@ -198,6 +198,11 @@ $(()=> {
         $('#theWord-input').val('');
         if ($roundCount < 2) {
             $('#enterWord-container').css('display', 'block')
+        } else {
+            p1.score = 0;
+            p2.score = 0;
+            $playNow.css('display', 'block');
+            $inputValue = '';
         }
         $('#player-Stats').css('display', 'none')
         p1.health = 5;
@@ -262,8 +267,10 @@ $(()=> {
     const $checkWinner = () => {
         if (p1.score > p2.score){
             alert(`Game over! ${p1.name} wins with ${p1.score} points!`)
-        } else {
+        } else if (p1.score < p2.score) {
             alert(`Game over! ${p2.name} wins with ${p2.score} points!`)
+        } else if (p1.score === p2.score) {
+            alert(`Game over! ${p1.name} and ${p2.name} have tied with ${p1.score} points!`)
         }
     }
     
