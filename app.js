@@ -13,28 +13,48 @@ $(()=> {
     //set up play roles for first round
     let $currentPlayer = p1;
     let $standByPlayer = p2;
-    //function to display player health
-    const $displayHealth = () => {
-        $('#health-display').text(`${$currentPlayer.name} health: ${$currentPlayer.health}`)
-    }
-    $displayHealth();
-    //display player scores
-    const $displayScores = () => {
-    $('#p1-score').text(`Player 1: ${p1.score}`)
-    $('#p2-score').text(`Player 2: ${p2.score}`)
-    }
-    $displayScores();
-    // Establish jQuery variables for #playNow button and #enterWord-container
-    const $playNow = $('#playNow-button')
-    const $enterWordContainer = $('#enterWord-container')
-    // Click event to display #enterWord-container and hide playNow button
-    $playNow.on('click', ()=> {
-        $enterWordContainer.css('display', 'block')
-        $playNow.css('display', 'none')
+    // Make variable for #name-button
+    const $nameBtn = $('#name-button')
+    // Click event to name both players then start first round
+    $nameBtn.on('click', ()=> {
+        if ($currentPlayer === p1) {
+        p1.name = $('#name-input').val();
+        $('#name-input').val("");
+        $('#enterName-h2').text("What is your name, Player 2?");
+        $currentPlayer = p2;
+        } else if ($currentPlayer === p2) {
+            p2.name = $('#name-input').val();
+            $playerNameContainer.css('display', 'none');
+            $enterWordContainer.css('display', 'block');
+            $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
+            $currentPlayer = p1;
+            $displayScores();
+            $displayHealth();
+        }
     })
+        //function to display player health
+        const $displayHealth = () => {
+            $('#health-display').text(`${$currentPlayer.name} health: ${$currentPlayer.health}`)
+        }
+        $displayHealth();
+        //display player scores
+        const $displayScores = () => {
+        $('#p1-score').text(`${p1.name}: ${p1.score}`)
+        $('#p2-score').text(`${p2.name}: ${p2.score}`)
+        }
+        
+        // Set jQuery variables for #playNow button and #enterWord-container
+        const $playNow = $('#playNow-button')
+        const $playerNameContainer = $('#playerName-container')
+        const $enterWordContainer = $('#enterWord-container')
+        // Click event to display #enterWord-container and hide playNow button
+        $playNow.on('click', ()=> {
+            $playerNameContainer.css('display', 'block')
+            $('#enterName-h2').text('What is your name, Player 1?');
+            $playNow.css('display', 'none')
+        })
     //create $lettersArray
     let $lettersArray = [];
-    
     //on click : create input variable to populate #word-container, hide $enterWordContianer, show #word-container, and test input for letters only
     let $inputValue = ''
     $('#enterWord-button').on('click', ()=> {  
@@ -47,7 +67,7 @@ $(()=> {
         $('#letters').css('display', 'flex');
         $('#player-Stats').css('display', 'flex');
         } else {
-            alert("Letters only please!")
+            alert(`Letters only please, ${$currentPlayer.name}!`)
         }
     })
     //function to split $inputValue from phrase, to words, to letters and appendTo #wordInPlay
@@ -197,15 +217,14 @@ $(()=> {
             }
             if ($lettersArray.length === 0) {
                 $currentPlayer.score += 200;
-                $displayScores()
-                alert("You won dude!");
-                $resetRound()
-                $switchRoles()
-                $displayHealth()
+                $displayScores();
+                alert(`You won, ${$currentPlayer.name}!`);
+                $resetRound();
+                $switchRoles();
+                $displayHealth();
             }
-            
         } else {
-            alert("Letter not found!");
+            alert(`Try again, ${$currentPlayer.name}!`);
             $standByPlayer.score += 50;
             $displayScores()
             $currentPlayer.health--;
@@ -213,7 +232,7 @@ $(()=> {
             if ($currentPlayer.health <=0) {
                 $standByPlayer.score += 200;
                 $displayScores()
-                alert("Don't be a sore loser!");
+                alert(`Don't be a sore loser, ${$currentPlayer.name}!`);
                 $resetRound()
                 $switchRoles()
             }
@@ -224,9 +243,11 @@ $(()=> {
         if ($currentPlayer === p1) {
             $currentPlayer = p2;
             $standByPlayer = p1;
+            $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
         } else if ($currentPlayer === p2) {
             $currentPlayer = p1;
             $standByPlayer = p2;
+            $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
         }
     }
     
