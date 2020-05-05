@@ -10,9 +10,10 @@
     p2 = new Player ("Player 2")
 
 $(()=> {
-    //set up play roles for first round
+    //set up player variables and round counter
     let $currentPlayer = p1;
     let $standByPlayer = p2;
+    let $roundCount = 0
     // Make variable for #name-button
     const $nameBtn = $('#name-button')
     // Click event to name both players then start first round
@@ -34,7 +35,7 @@ $(()=> {
     })
         //function to display player health
         const $displayHealth = () => {
-            $('#health-display').text(`${$currentPlayer.name} health: ${$currentPlayer.health}`)
+            $('#health-display').text(`${$currentPlayer.name}'s health: ${$currentPlayer.health}`)
         }
         $displayHealth();
         //display player scores
@@ -195,7 +196,9 @@ $(()=> {
         $('#letters').css('display', 'none');
         $('#word-container').css('display', 'none');
         $('#theWord-input').val('');
-        $('#enterWord-container').css('display', 'block')
+        if ($roundCount < 2) {
+            $('#enterWord-container').css('display', 'block')
+        }
         $('#player-Stats').css('display', 'none')
         p1.health = 5;
         p2.health = 5;
@@ -219,7 +222,7 @@ $(()=> {
                 $currentPlayer.score += 200;
                 $displayScores();
                 alert(`You won, ${$currentPlayer.name}!`);
-                setTimeout($resetRound, 2500);
+                setTimeout($resetRound, 2400);
                 $switchRoles();
                 $displayHealth();
             }
@@ -233,7 +236,7 @@ $(()=> {
                 $standByPlayer.score += 200;
                 $displayScores()
                 alert(`Don't be a sore loser, ${$currentPlayer.name}!`);
-                setTimeout($resetRound, 2500);
+                setTimeout($resetRound, 2400);
                 $switchRoles()
             }
         }
@@ -247,7 +250,20 @@ $(()=> {
         } else if ($currentPlayer === p2) {
             $currentPlayer = p1;
             $standByPlayer = p2;
-            $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
+            $roundCount++
+            if ($roundCount < 2) {
+                $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
+            } else if ($roundCount >= 2) {
+                setTimeout($checkWinner, 2000)
+            }
+        }
+    }
+    //function to confirm and display winner
+    const $checkWinner = () => {
+        if (p1.score > p2.score){
+            alert(`Game over! ${p1.name} wins with ${p1.score} points!`)
+        } else {
+            alert(`Game over! ${p2.name} wins with ${p2.score} points!`)
         }
     }
     
