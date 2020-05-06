@@ -47,12 +47,16 @@ $(()=> {
     const $playNow = $('#playNow-button')
     const $playerNameContainer = $('#playerName-container')
     const $enterWordContainer = $('#enterWord-container')
-    // Click event to display #enterWord-container and hide playNow button
+    // Click event to animate playNow button and call hide playNow function
     $playNow.on('click', ()=> {
-        $playerNameContainer.css('display', 'block')
         $('#enterName-h2').text('What is your name, Player 1?');
-        $playNow.css('display', 'none')
+        $hidePlayNow()
     })
+    //function to show $playerNameContainer and hide $playNow button
+    const $hidePlayNow = () => {
+        $playNow.css('display', 'none')
+        $playerNameContainer.css('display', 'block')
+    }
     //click event for alert-button
     $('#alert-button').on('click', ()=> {
         $('#alert-window').css('display', 'none')
@@ -248,6 +252,8 @@ $(()=> {
                 $displayScores()
                 $('#alert-h2').text(`Better luck next time, ${$currentPlayer.name}!`);
                 $('#alert-window').css('display', 'block');
+                //reveal remaining letters after loss
+                $('.unknownLtrs').css('background-color', 'white');
                 setTimeout($resetRound, 4000);
                 $switchRoles()
             }
