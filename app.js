@@ -1,14 +1,13 @@
-    //establish class for players
-    class Player {
-        constructor (name, health, score) {
-            this.name = name;
-            this.health = 5;
-            this.score = 0;
-        }
+//establish class for players
+class Player {
+    constructor (name, health, score) {
+        this.name = name;
+        this.health = 5;
+        this.score = 0;
     }
-    p1 = new Player ("Player 1")
-    p2 = new Player ("Player 2")
-
+}
+p1 = new Player ("Player 1")
+p2 = new Player ("Player 2")
 $(()=> {
     //set up player variables and round counter
     let $currentPlayer = p1;
@@ -115,95 +114,47 @@ $(()=> {
         $('#round-status').text(`Round ${$roundCount}: ${$currentPlayer.name}'s turn`);
     }
     //reveal letters in phrase, and call function to fade chosen letter from #letters
-    $('#letters .A').on('click', ()=> {
-        $chosenOnes('A', 'a')
-    })
-    $('#letters .B').on('click', ()=> {
-        $chosenOnes('B', 'b')
-    })
-    $('#letters .C').on('click', ()=> {
-        $chosenOnes('C', 'c')
-    })
-    $('#letters .D').on('click', ()=> {
-        $chosenOnes('D', 'd')
-    })
-    $('#letters .E').on('click', ()=> {
-        $chosenOnes('E', 'e')
-    })
-    $('#letters .F').on('click', ()=> {
-        $chosenOnes('F', 'f')
-    })
-    $('#letters .G').on('click', ()=> {
-        $chosenOnes('G', 'g')
-    })
-    $('#letters .H').on('click', ()=> {
-        $chosenOnes('H', 'h')
-    })
-    $('#letters .I').on('click', ()=> {
-        $chosenOnes('I', 'i')
-    })
-    $('#letters .J').on('click', ()=> {
-        $chosenOnes('J', 'j')
-    })
-    $('#letters .K').on('click', ()=> {
-        $chosenOnes('K', 'k')
-    })
-    $('#letters .L').on('click', ()=> {
-        $chosenOnes('L', 'l')
-    })
-    $('#letters .M').on('click', ()=> {
-        $chosenOnes('M', 'm')
-    })
-    $('#letters .N').on('click', ()=> {
-        $chosenOnes('N', 'n')
-    })
-    $('#letters .O').on('click', ()=> {
-        $chosenOnes('O', 'o')
-    })
-    $('#letters .P').on('click', ()=> {
-        $chosenOnes('P', 'p')
-    })
-    $('#letters .Q').on('click', ()=> {
-        $chosenOnes('Q', 'q')
-    })
-    $('#letters .R').on('click', ()=> {
-        $chosenOnes('R', 'r')
-    })
-    $('#letters .S').on('click', ()=> {
-        $chosenOnes('S', 's')
-    })
-    $('#letters .T').on('click', ()=> {
-        $chosenOnes('T', 't')
-    })
-    $('#letters .U').on('click', ()=> {
-        $chosenOnes('U', 'u')
-    })
-    $('#letters .V').on('click', ()=> {
-        $chosenOnes('V', 'v')
-    })
-    $('#letters .W').on('click', ()=> {
-        $chosenOnes('W', 'w')
-    })
-    $('#letters .X').on('click', ()=> {
-        $chosenOnes('X', 'x')
-    })
-    $('#letters .Y').on('click', ()=> {
-        $chosenOnes('Y', 'y')
-    })
-    $('#letters .Z').on('click', ()=> {   
-        $chosenOnes('Z', 'z')
-    })
+    $('#letters .A').on('click', ()=> { $chosenOnes('A', 'a') })
+    $('#letters .B').on('click', ()=> { $chosenOnes('B', 'b') })
+    $('#letters .C').on('click', ()=> { $chosenOnes('C', 'c') })
+    $('#letters .D').on('click', ()=> { $chosenOnes('D', 'd') })
+    $('#letters .E').on('click', ()=> { $chosenOnes('E', 'e') })
+    $('#letters .F').on('click', ()=> { $chosenOnes('F', 'f') })
+    $('#letters .G').on('click', ()=> { $chosenOnes('G', 'g') })
+    $('#letters .H').on('click', ()=> { $chosenOnes('H', 'h') })
+    $('#letters .I').on('click', ()=> { $chosenOnes('I', 'i') })
+    $('#letters .J').on('click', ()=> { $chosenOnes('J', 'j') })
+    $('#letters .K').on('click', ()=> { $chosenOnes('K', 'k') })
+    $('#letters .L').on('click', ()=> { $chosenOnes('L', 'l') })
+    $('#letters .M').on('click', ()=> { $chosenOnes('M', 'm') })
+    $('#letters .N').on('click', ()=> { $chosenOnes('N', 'n') })
+    $('#letters .O').on('click', ()=> { $chosenOnes('O', 'o') })
+    $('#letters .P').on('click', ()=> { $chosenOnes('P', 'p') })
+    $('#letters .Q').on('click', ()=> { $chosenOnes('Q', 'q') })
+    $('#letters .R').on('click', ()=> { $chosenOnes('R', 'r') })
+    $('#letters .S').on('click', ()=> { $chosenOnes('S', 's') })
+    $('#letters .T').on('click', ()=> { $chosenOnes('T', 't') })
+    $('#letters .U').on('click', ()=> { $chosenOnes('U', 'u') })
+    $('#letters .V').on('click', ()=> { $chosenOnes('V', 'v') })
+    $('#letters .W').on('click', ()=> { $chosenOnes('W', 'w') })
+    $('#letters .X').on('click', ()=> { $chosenOnes('X', 'x') })
+    $('#letters .Y').on('click', ()=> { $chosenOnes('Y', 'y') })
+    $('#letters .Z').on('click', ()=> { $chosenOnes('Z', 'z') })
     //function to fade chosen ltr
     const $fadeLtr = (upperLtr) => {
         $(`#letters .${upperLtr}`).css('color', 'gray');
         $(`#letters .${upperLtr}`).css('opacity', '.5');
         $(`#letters .${upperLtr}`).css('transform', 'scale(.8)');
+        $(`#letters .${upperLtr}`).css('text-decoration', 'none');
+        $(`#letters .${upperLtr}`).css('pointer-events', 'none');
     }
-    //function to reset #letters after round
+    //function to reset .letter styling and clickability after round
     const $resetLtrBar = () => {
         $(`.letter`).css('color', 'black');
         $(`.letter`).css('opacity', '1');
-        $(`.letter`).css('transform', 'scale(1)');
+        $(`.letter`).css('transform', '');
+        $(`.letter`).css('text-decoration', '');
+        $(`.letter`).css('pointer-events', 'auto');
     }
     //function to reset screen and player health for next round or game
     const $resetRound = () => {
@@ -240,7 +191,7 @@ $(()=> {
             $currentPlayer.score += 30;
             $displayScores()
             while ($lettersArray.indexOf(upperLtr) !== -1) {
-            $lettersArray.splice($lettersArray.indexOf(upperLtr), 1);
+                $lettersArray.splice($lettersArray.indexOf(upperLtr), 1);
             }
             if ($lettersArray.length === 0) {
                 $currentPlayer.score += 200;
@@ -280,9 +231,9 @@ $(()=> {
             $currentPlayer = p1;
             $standByPlayer = p2;
             $roundCount++
-            if ($roundCount < 2) {
+            if ($roundCount < 3) {
                 $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
-            } else if ($roundCount >= 2) {
+            } else if ($roundCount >= 3) {
                 setTimeout($checkWinner, 3000)
             }
         }
@@ -299,6 +250,5 @@ $(()=> {
             $('#alert-h2').text(`Game over! ${p1.name} and ${p2.name} have tied with ${p1.score} points!`);
             $('#alert-window').css('display', 'block');
         }
-    }
-    
+    }  
 })
