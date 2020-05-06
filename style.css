@@ -110,8 +110,34 @@ button {
 #playBtn-container {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 35%;
     transform: translate(-50%, -50%);
+}
+#howTo-container {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+}
+#howTo-button {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: linear-gradient(to left top, gold, whitesmoke, gold);
+    border: 1px solid black;
+    box-shadow: 3px 3px grey;
+}
+#play-instructions {
+    font-size: 1.2rem;
+    display: none;
+    background-color: whitesmoke;
+    border-radius: 12px;
+    box-shadow: 2px 2px grey;
+    border: 1px solid black;
+    padding: .4rem
+
 }
 #playerName-container {
     position: absolute;
@@ -211,7 +237,14 @@ button {
     button {
         font-size: .7rem;
         margin: .8rem;
-    };
+    }
+    #howTo-button {
+        padding: .7rem;
+        font-size: 1.3rem;
+    }
+    #playNow-button {
+        padding: 1.1rem;
+    }
     #letters {
         flex-wrap: wrap;
     }

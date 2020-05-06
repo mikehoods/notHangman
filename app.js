@@ -16,6 +16,10 @@ $(()=> {
     let $roundCount = 1
     // Make variable for #name-button
     const $nameBtn = $('#name-button')
+    // Click event to display game instructions
+    $('#howTo-button').click(function() {
+        $('#play-instructions').toggle();
+    })
     // Click event to name both players then start first round
     $nameBtn.on('click', ()=> {
         if ($currentPlayer === p1) {
@@ -54,8 +58,9 @@ $(()=> {
     })
     //function to show $playerNameContainer and hide $playNow button
     const $hidePlayNow = () => {
-        $playNow.css('display', 'none')
-        $playerNameContainer.css('display', 'block')
+        $playNow.css('display', 'none');
+        $playerNameContainer.css('display', 'block');
+        $('#howTo-container').css('display', 'none')
     }
     //click event for alert-button
     $('#alert-button').on('click', ()=> {
@@ -213,6 +218,7 @@ $(()=> {
             p1.score = 0;
             p2.score = 0;
             $playNow.css('display', 'block');
+            $('#howTo-container').css('display', 'block');
             $inputValue = '';
         }
         $('#player-Stats').css('display', 'none')
