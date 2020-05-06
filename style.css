@@ -110,14 +110,14 @@ button {
 #playBtn-container {
     position: absolute;
     left: 50%;
-    top: 35%;
+    top: 40%;
     transform: translate(-50%, -50%);
 }
 #howTo-container {
     position: absolute;
     text-align: center;
     left: 50%;
-    top: 70%;
+    top: 53%;
     transform: translate(-50%, -50%);
 }
 #howTo-button {
@@ -129,6 +129,17 @@ button {
     border: 1px solid black;
     box-shadow: 3px 3px grey;
 }
+#howTo-button:active {
+    transform: translateY(2px) scale(.9);
+}
+#instructions-container {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 74%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+}
 #play-instructions {
     font-size: 1.2rem;
     display: none;
@@ -136,8 +147,8 @@ button {
     border-radius: 12px;
     box-shadow: 2px 2px grey;
     border: 1px solid black;
-    padding: .4rem
-
+    padding: .6rem;
+    font-family: 'Indie Flower', cursive;
 }
 #playerName-container {
     position: absolute;
@@ -222,6 +233,14 @@ button {
     padding: 0 0 .1rem 0;
     margin: 0 0 .2rem 0;
 }
+#credit {
+    font-size: .6rem;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 95%;
+    transform: translate(-50%, -50%);
+}
 @keyframes fade {
     from {
         opacity: 1;
@@ -238,6 +257,9 @@ button {
         font-size: .7rem;
         margin: .8rem;
     }
+    #instructions-container {
+        width: 100%;
+    }
     #howTo-button {
         padding: .7rem;
         font-size: 1.3rem;
@@ -245,8 +267,12 @@ button {
     #playNow-button {
         padding: 1.1rem;
     }
+    #play-instructios {
+        font-size: 1rem;
+    }
     #letters {
         flex-wrap: wrap;
+        letter-spacing: 1.4rem;
     }
     .unknownLtrs {
         font-size: 1.5rem;

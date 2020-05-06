@@ -60,7 +60,8 @@ $(()=> {
     const $hidePlayNow = () => {
         $playNow.css('display', 'none');
         $playerNameContainer.css('display', 'block');
-        $('#howTo-container').css('display', 'none')
+        $('#howTo-container').css('display', 'none');
+        $('#credit').css('display', 'none');
     }
     //click event for alert-button
     $('#alert-button').on('click', ()=> {
@@ -204,7 +205,7 @@ $(()=> {
         $(`.letter`).css('opacity', '1');
         $(`.letter`).css('transform', 'scale(1)');
     }
-    //function to reset screen and player health for next round
+    //function to reset screen and player health for next round or game
     const $resetRound = () => {
         $resetLtrBar()
         $lettersArray = [];
@@ -219,6 +220,7 @@ $(()=> {
             p2.score = 0;
             $playNow.css('display', 'block');
             $('#howTo-container').css('display', 'block');
+            $('#credit').css('display', 'block');
             $inputValue = '';
         }
         $('#player-Stats').css('display', 'none')
@@ -245,7 +247,7 @@ $(()=> {
                 $displayScores();
                 $('#alert-h2').text(`You solved the puzzle, ${$currentPlayer.name}!`);
                 $('#alert-window').css('display', 'block');
-                setTimeout($resetRound, 4000);
+                setTimeout($resetRound, 4200);
                 $switchRoles();
                 $displayHealth();
             }
@@ -263,7 +265,7 @@ $(()=> {
                 $('#alert-window').css('display', 'block');
                 //reveal remaining letters after loss
                 $('.unknownLtrs').css('background-color', 'white');
-                setTimeout($resetRound, 4000);
+                setTimeout($resetRound, 4200);
                 $switchRoles()
             }
         }
