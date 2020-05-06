@@ -2,7 +2,6 @@
     outline:none
 }
 body {
-    /* background-color: cyan; */
     background: linear-gradient(to top left, cyan, rgb(9, 131, 187));
     height: 100vh;
     font-size: 62.5%;
@@ -68,6 +67,7 @@ h2 {
 #wordInPlay {
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
     justify-content: space-around;
     padding: 1rem;
     align-items: center;
@@ -110,14 +110,14 @@ button {
 #playBtn-container {
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 36%;
     transform: translate(-50%, -50%);
 }
 #howTo-container {
     position: absolute;
     text-align: center;
     left: 50%;
-    top: 53%;
+    top: 51%;
     transform: translate(-50%, -50%);
 }
 #howTo-button {
@@ -200,6 +200,7 @@ button {
 #letters {
     display: none;
     justify-content: space-around;
+    text-align: center;
     font-size: 2rem;
     background: linear-gradient(to right, green, rgb(166, 220, 183), green);
     padding: 1rem;
@@ -217,7 +218,12 @@ button {
 }
 #player-Stats {
     display: none;
+    justify-content: space-between;
+}
+#health-container {
     font-size: 2rem;
+    width: 30%;
+    text-align: center;
     text-shadow: 2px 2px whitesmoke;
     font-family: 'Acme', sans-serif;
     justify-content: space-around;
@@ -227,14 +233,36 @@ button {
     border-radius: 12px;
     box-shadow: 2px 2px grey;
     align-items: center;
-    padding: 4px;
+    padding: 10px;
 }
-#player-Stats .dot {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
+#scores {
+    font-size: 2rem;
+    width: 30%;
+    text-shadow: 2px 2px whitesmoke;
+    font-family: 'Acme', sans-serif;
+    justify-content: space-around;
+    margin: 2rem;
+    background: linear-gradient(to top, gold, khaki, gold);
+    border: 2px black solid;
+    border-radius: 12px;
+    box-shadow: 2px 2px grey;
+    align-items: center;
+    padding: 10px;
+}
+#player-Stats .healthPoint {
+  height: 35px;
+  width: 65px;
+  margin: 2px;
+  background: linear-gradient(to right top, red, orange, green,green);
+  border-radius: 42%;
+  border: 1px solid black;
+  box-shadow: 1px 1px grey;
+  display: inline-flex;
+  align-items: center;
+}
+healthDot-container {
+    display: flex;
+    justify-content: center;
 }
 #score-h2 {
     text-decoration: underline;
@@ -248,14 +276,6 @@ button {
     left: 50%;
     top: 95%;
     transform: translate(-50%, -50%);
-}
-@keyframes fade {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
 }
 @media only screen and (max-width: 600px) {
     #word-container {
@@ -294,5 +314,8 @@ button {
     .space {
         border: none;
         width: 1.2rem;
+    }
+    #player-Stats {
+        font-size: .8rem;
     }
   }

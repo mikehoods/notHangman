@@ -38,7 +38,7 @@ $(()=> {
     })
     //function to display player health
     const $displayHealth = () => {
-        $('#health-display').text(`${$currentPlayer.name}'s health: ${$currentPlayer.health}`)
+        $('#health-display').text(`Chances left:`)
     }
     $displayHealth();
     //display player scores
@@ -55,12 +55,13 @@ $(()=> {
         $('#enterName-h2').text('What is your name, Player 1?');
         $hidePlayNow()
     })
-    //function to show $playerNameContainer and hide $playNow button
+    //function to show $playerNameContainer and hide the rest
     const $hidePlayNow = () => {
         $playNow.css('display', 'none');
         $playerNameContainer.css('display', 'block');
         $('#howTo-container').css('display', 'none');
         $('#credit').css('display', 'none');
+        $('#play-instructions').css('display', 'none');
     }
     //click event for alert-button
     $('#alert-button').on('click', ()=> {
@@ -161,10 +162,15 @@ $(()=> {
         $resetLtrBar()
         $lettersArray = [];
         $('.aWord').remove();
+        $('.space').remove();
         $('#letters').css('display', 'none');
         $('#word-container').css('display', 'none');
         $('#theWord-input').val('');
+        while ($('.healthPoint').length < 5) {
+            $('#healthDot-container').append($('<div class="healthPoint">'));
+        }
         if ($roundCount < 3) {
+            $displayHealth();
             $('#enterWord-container').css('display', 'block')
         } else {
             p1.score = 0;
@@ -200,16 +206,17 @@ $(()=> {
                 $('#alert-window').css('display', 'block');
                 setTimeout($resetRound, 4200);
                 $switchRoles();
-                $displayHealth();
             }
         } else {
             $('#alert-h2').text(`Try again, ${$currentPlayer.name}!`);
             $('#alert-window').css('display', 'block');
             $standByPlayer.score += 50;
-            $displayScores()
+            $displayScores();
             $currentPlayer.health--;
             $displayHealth();
+            $('#healthDot-container').children().last().remove();
             if ($currentPlayer.health <=0) {
+                
                 $standByPlayer.score += 200;
                 $displayScores()
                 $('#alert-h2').text(`Better luck next time, ${$currentPlayer.name}!`);

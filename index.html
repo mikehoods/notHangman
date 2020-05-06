@@ -32,7 +32,7 @@
     <button id="playNow-button">Play Now</button>
     </div>
     <div id="howTo-container">
-        <button id="howTo-button">Wait...How Do I Play?</button>
+        <button id="howTo-button">Wait...<br>How Do I Play?</button>
     </div>
     <div id="instructions-container">
         <p id="play-instructions">This is a two player game with two rounds. In each round, both players get a turn to guess a word or phrase and also create a word or phrase for their opponent to guess. <br><br>Points are scored to active player or opponent based on correct or incorrect letter choices. A player can make five incorrect guesses before losing a puzzle. Solving a puzzle gives the solver 200 points, while losing that puzzle gives the opponent 200 points. After two rounds the player with the highest score is determined as the winner.</p>
@@ -75,11 +75,15 @@
             <div class="Z letter">Z</div>
         </div>
     <div id="player-Stats">
-        <div id="health-display">
-                <span class="dot"> </span>
-                <span class="dot"> </span>
-                <span class="dot"> </span>
-                <span class="dot"> </span>
+        <div id="health-container">
+            <div id="health-display"></div>
+            <div id="healthDot-container">
+                <div class="healthPoint"></div>
+                <div class="healthPoint"></div>
+                <div class="healthPoint"></div>
+                <div class="healthPoint"></div>
+                <div class="healthPoint"></div>
+            </div>
         </div>
         <div id="scores">
             <h2 id="score-h2">Keeping Score</h2>
