@@ -13,7 +13,7 @@ $(()=> {
     //set up player variables and round counter
     let $currentPlayer = p1;
     let $standByPlayer = p2;
-    let $roundCount = 0
+    let $roundCount = 1
     // Make variable for #name-button
     const $nameBtn = $('#name-button')
     // Click event to name both players then start first round
@@ -71,9 +71,10 @@ $(()=> {
         if ($inputValue.valueOf().match(onlyLetters)) {
         $splitWords($inputValue);
         $enterWordContainer.css('display', 'none');
-        $('#word-container').css('display', 'flex');
+        $('#word-container').css('display', 'block');
         $('#letters').css('display', 'flex');
         $('#player-Stats').css('display', 'flex');
+        $roundStatus()
         } else {
             $('#alert-h2').text(`Letters only, ${$standByPlayer.name}!`)
             $('#alert-window').css('display', 'block');
@@ -100,10 +101,12 @@ $(()=> {
                 $eachLtr.appendTo($('#wordInPlay'))
             }
         }
-        console.log($lettersArray);
         //convert all letters in array to UPPERCASE so they match onclick IDs
-        $lettersArray = $lettersArray.map(function(x){ return x.toUpperCase() });
-        console.log($lettersArray);
+        $lettersArray = $lettersArray.map(function(x){ return x.toUpperCase() });  
+    }
+    //display current round and player
+    const $roundStatus = () => {
+        $('#round-status').text(`Round ${$roundCount}: ${$currentPlayer.name}'s turn`);
     }
     //reveal letters in phrase, and call function to fade chosen letter from #letters
     $('#letters .A').on('click', ()=> {
@@ -204,7 +207,7 @@ $(()=> {
         $('#letters').css('display', 'none');
         $('#word-container').css('display', 'none');
         $('#theWord-input').val('');
-        if ($roundCount < 2) {
+        if ($roundCount < 3) {
             $('#enterWord-container').css('display', 'block')
         } else {
             p1.score = 0;
