@@ -247,7 +247,7 @@ button {
     border-radius: 12px;
     box-shadow: 2px 2px grey;
     align-items: center;
-    padding: 10px;
+    padding: 10px 0 0 25px;
 }
 #player-Stats .healthPoint {
   height: 35px;

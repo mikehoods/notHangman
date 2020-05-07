@@ -179,6 +179,7 @@ $(()=> {
             $('#howTo-container').css('display', 'block');
             $('#credit').css('display', 'block');
             $inputValue = '';
+            $('#name-input').val("");
         }
         $('#player-Stats').css('display', 'none')
         p1.health = 5;
@@ -233,13 +234,13 @@ $(()=> {
         if ($currentPlayer === p1) {
             $currentPlayer = p2;
             $standByPlayer = p1;
-            $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
+            $('#enterWord-h2').text(`${$standByPlayer.name}, enter a word or phrase:`);
         } else if ($currentPlayer === p2) {
             $currentPlayer = p1;
             $standByPlayer = p2;
             $roundCount++
             if ($roundCount < 3) {
-                $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
+                $('#enterWord-h2').text(`${$standByPlayer.name}, enter a word or phrase:`);
             } else if ($roundCount >= 3) {
                 setTimeout($checkWinner, 3000)
             }
@@ -248,13 +249,13 @@ $(()=> {
     //function to confirm and display winner
     const $checkWinner = () => {
         if (p1.score > p2.score){
-            $('#alert-h2').text(`Game over! ${p1.name} wins with ${p1.score} points!`);
+            $('#alert-h2').text(`Game over! ${p1.name} wins, with ${p1.score} points!`);
             $('#alert-window').css('display', 'block');
         } else if (p1.score < p2.score) {
-            $('#alert-h2').text(`Game over! ${p2.name} wins with ${p2.score} points!`);
+            $('#alert-h2').text(`Game over! ${p2.name} wins, with ${p2.score} points!`);
             $('#alert-window').css('display', 'block');
         } else if (p1.score === p2.score) {
-            $('#alert-h2').text(`Game over! ${p1.name} and ${p2.name} have tied with ${p1.score} points!`);
+            $('#alert-h2').text(`Game over! ${p1.name} and ${p2.name} have tied, with ${p1.score} points!`);
             $('#alert-window').css('display', 'block');
         }
     }  
