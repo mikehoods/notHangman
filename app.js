@@ -30,7 +30,7 @@ $(()=> {
             p2.name = $('#name-input').val();
             $playerNameContainer.css('display', 'none');
             $enterWordContainer.css('display', 'block');
-            $('#enterWord-h2').text(`${$standByPlayer.name} enter a word or phrase:`);
+            $('#enterWord-h2').text(`${$standByPlayer.name}, enter a word or phrase:`);
             $currentPlayer = p1;
             $displayScores();
             $displayHealth();
